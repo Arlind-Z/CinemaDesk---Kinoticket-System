@@ -4,14 +4,14 @@ CinemaDesk ist eine modulare Konsolenanwendung in Python zur Erfassung von Kinot
 
 ---
 
-## 📝 Analysis
+## 📝 Analyse
 
-**Problem**
-> 🚧 Describe the real-world problem your application solves. (Not HOW, but WHAT)
+### Problem
+An der Kinokasse muss es kurz vor Filmbeginn oft schnell gehen. Das Personal muss in kurzer Zeit den passenden Film auswählen, unterschiedliche Ticketpreise (Erwachsene, Studierende, Kinder) abrechnen und Rabattaktionen prüfen.
 
-💡 Example: In a small local pizzeria, the staff writes orders and calculates totals by hand. This causes mistakes and inconsistent orders or discounts.
+Wenn das manuell geschieht, führt das leicht zu Rechenfehlern, falschen Rabatten und langen Wartezeiten für die Kunden.
 
-**Scenario**
+###Szenario**
 > 🚧 Describe when and how a user will use your application
 
 💡 Example: PizzaRP solves the part of the problem where orders and totals are created by letting a user select items from a menu and automatically generating a correct invoice.

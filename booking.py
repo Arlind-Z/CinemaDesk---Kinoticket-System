@@ -21,6 +21,22 @@ def find_movie(movies,movie_id):
    
    return None
 
+def select_movie(movies):
+    """Fragt eine Vorstellungs-ID ab, bis sie gültig ist."""
+    if not movies:
+       print("Keine Vorstellungen vorhanden.")
+       return None
+
+    while True:
+       movie_id = input("Vorstellungs-ID eingeben: ").strip().upper()
+       selected_movie = find_movie(movies, movie_id)
+
+       if selected_movie is None:
+          print("Vorstellung nicht gefunden. Bitte erneut eingeben.")
+          continue
+
+       return selected_movie
+
 if __name__ == "__main__":
     example_movies = [
         {
@@ -46,10 +62,6 @@ if __name__ == "__main__":
      ]
 
     show_movies(example_movies)
-    movie_id = input("Vorstellung-ID eingeben: ").strip().upper()
-    selected_movie = find_movie(example_movies, movie_id)
-
-    if selected_movie is None:
-       print("Vorstellung nicht gefunden")
-    else:
+    selected_movie = select_movie(example_movies)
+    if selected_movie is not None:
        print(f"Ausgewählt: {selected_movie['title']}")

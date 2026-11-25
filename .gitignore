@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# macOS
+.DS_Store
+
+# CinemaDesk: Dateien, die das Programm oder die Tests erzeugen
+test_promo_codes.txt
+test_bookings.csv
+bookings.csv
+receipt_*.txt

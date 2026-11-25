@@ -13,6 +13,13 @@ def show_movies(movies):
         f"Freie Plätze: {available_seats}"
     )
 
+def find_movie(movies,movie_id):
+   """Sucht eine Vorstellung anhand ihrer ID"""
+   for movie in movies:
+      if movie["id"] == movie_id:
+         return movie
+   
+   return None
 
 if __name__ == "__main__":
     example_movies = [
@@ -39,3 +46,10 @@ if __name__ == "__main__":
      ]
 
     show_movies(example_movies)
+    movie_id = input("Vorstellung-ID eingeben: ").strip().upper()
+    selected_movie = find_movie(example_movies, movie_id)
+
+    if selected_movie is None:
+       print("Vorstellung nicht gefunden")
+    else:
+       print(f"Ausgewählt: {selected_movie['title']}")

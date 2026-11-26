@@ -47,8 +47,12 @@ def select_category():
 
        print("Ungültige Kategorie. Bitte E, S oder K eingeben.")
 
-def select_quantity():
-    """Fragt eine positive ganze Ticketanzahl ab."""
+def select_quantity(available_seats):
+    """Fragt eine Ticketanzahl innerhalb der Freienplätze ab."""
+    if available_seats < 1:
+        print("Keine freien Sitzplätze vorhanden.")
+        return None
+    
     while True:
        try:
           quantity = int(input("Anzahl Tickets: ").strip())
@@ -59,6 +63,10 @@ def select_quantity():
        if quantity < 1:
            print("Die Anzahl muss mindestens 1 sein.")
            continue
+
+       if quantity > available_seats:
+          print(f"Es sind nur {available_seats} Plätze verfügbar.")
+          continue
 
        return quantity
 
@@ -91,7 +99,12 @@ if __name__ == "__main__":
    
     if selected_movie is not None:
        print(f"Ausgewählt: {selected_movie['title']}")
-       category = select_category()
-       print(f"Ticketkategorie: {category}")
-       quantitiy = select_quantity()
-       print(f"Anzahl Tickets: {quantitiy}")
+       available_seats = (
+           selected_movie["capacity"] - selected_movie["sold"]
+       )
+       quantity = select_quantity(available_seats)
+
+       if quantity is not None:
+           category = select_category()
+           print(f"Ticketkategorie: {category}")
+           print(f"Anzahl Tickets: {quantity}")

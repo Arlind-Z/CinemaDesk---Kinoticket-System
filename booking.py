@@ -47,6 +47,21 @@ def select_category():
 
        print("Ungültige Kategorie. Bitte E, S oder K eingeben.")
 
+def select_quantity():
+    """Fragt eine positive ganze Ticketanzahl ab."""
+    while True:
+       try:
+          quantity = int(input("Anzahl Tickets: ").strip())
+       except ValueError:
+          print("Bitte eine ganze Zahl eingeben.")
+          continue
+
+       if quantity < 1:
+           print("Die Anzahl muss mindestens 1 sein.")
+           continue
+
+       return quantity
+
 if __name__ == "__main__":
     example_movies = [
         {
@@ -78,3 +93,5 @@ if __name__ == "__main__":
        print(f"Ausgewählt: {selected_movie['title']}")
        category = select_category()
        print(f"Ticketkategorie: {category}")
+       quantitiy = select_quantity()
+       print(f"Anzahl Tickets: {quantitiy}")

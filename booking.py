@@ -37,6 +37,16 @@ def select_movie(movies):
 
        return selected_movie
 
+def select_category():
+    """Fragt eine gültige Ticketkategorie ab."""
+    while True:
+       category = input("Kategorie (E/S/K): ").strip().upper()
+
+       if category in ("E", "S", "K"):
+          return category
+
+       print("Ungültige Kategorie. Bitte E, S oder K eingeben.")
+
 if __name__ == "__main__":
     example_movies = [
         {
@@ -63,5 +73,8 @@ if __name__ == "__main__":
 
     show_movies(example_movies)
     selected_movie = select_movie(example_movies)
+   
     if selected_movie is not None:
        print(f"Ausgewählt: {selected_movie['title']}")
+       category = select_category()
+       print(f"Ticketkategorie: {category}")

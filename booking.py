@@ -70,6 +70,15 @@ def select_quantity(available_seats):
 
        return quantity
 
+def add_to_cart(cart, movie_id, category, quantity):
+    """Fügt eine bereits geprüfte Ticketposition zum Warenkorb hinzu."""
+    item = {
+        "movie_id": movie_id,
+        "category": category,
+        "quantity": quantity,
+    }
+    cart.append(item)
+
 if __name__ == "__main__":
     example_movies = [
         {
@@ -94,6 +103,7 @@ if __name__ == "__main__":
         },
      ]
 
+    cart = []
     show_movies(example_movies)
     selected_movie = select_movie(example_movies)
    
@@ -106,5 +116,6 @@ if __name__ == "__main__":
 
        if quantity is not None:
            category = select_category()
-           print(f"Ticketkategorie: {category}")
-           print(f"Anzahl Tickets: {quantity}")
+           add_to_cart(cart, selected_movie["id"], category, quantity)
+           print("Position zum Warenkorb hinzugefügt.")
+           print(cart)

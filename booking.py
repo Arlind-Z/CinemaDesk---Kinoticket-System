@@ -1,11 +1,11 @@
-def show_movies(movies):    
+def show_movies(movies, cart):    
     """Zeigt die übergebenen Vorstellungen in der Konsole an."""
     if not movies:
         print("Keine Vorstellungen vorhanden.")
         return
 
     for movie in movies:
-     available_seats = movie["capacity"] - movie["sold"]
+     available_seats = get_available_seats(movie, cart)
      print(
         f"{movie['id']} | {movie['title']} | "
         f"Saal {movie['hall']} | {movie['time']} | "
@@ -79,6 +79,16 @@ def add_to_cart(cart, movie_id, category, quantity):
     }
     cart.append(item)
 
+def get_available_seats(movie, cart):
+    """Berechnet freie Plätze unter Berücksichtigung des Warenkorbs."""
+    reserved = 0
+
+    for item in cart:
+        if item["movie_id"] == movie["id"]:
+            reserved += item["quantity"]
+
+    return movie["capacity"] - movie["sold"] - reserved
+
 if __name__ == "__main__":
     example_movies = [
         {
@@ -104,14 +114,12 @@ if __name__ == "__main__":
      ]
 
     cart = []
-    show_movies(example_movies)
+    show_movies(example_movies, cart)
     selected_movie = select_movie(example_movies)
    
     if selected_movie is not None:
        print(f"Ausgewählt: {selected_movie['title']}")
-       available_seats = (
-           selected_movie["capacity"] - selected_movie["sold"]
-       )
+       available_seats = get_available_seats(selected_movie, cart)
        quantity = select_quantity(available_seats)
 
        if quantity is not None:
@@ -119,3 +127,5 @@ if __name__ == "__main__":
            add_to_cart(cart, selected_movie["id"], category, quantity)
            print("Position zum Warenkorb hinzugefügt.")
            print(cart)
+           remaining_seats = get_available_seats(selected_movie, cart)
+           print(f"Noch buchbar: {remaining_seats}")
